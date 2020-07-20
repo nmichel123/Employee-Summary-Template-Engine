@@ -1,11 +1,17 @@
 // TODO: Write code to define and export the Employee class
+const inquirer = require('inquirer');
+
+
+
 class Employee {
-    constructor (name, id, email){
-        this.name = name
-        this.id = id
-        this.email = email
-        this.role = role
-    }
+    constructor (name, id, email,role){
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.role = role;
+    };
+
+
     getName() {
         return inquirer.prompt ([
             {
@@ -16,9 +22,11 @@ class Employee {
         ]).then(answers =>{
             this.name = answers.name 
             this.getId
+
+            
         })
     }
-    getId(){
+    getId() {
         return inquirer.prompt([
             {
                 type: 'input',
@@ -28,9 +36,10 @@ class Employee {
         ]).then(answers=>{
             this.id = answers.id
             this.getEmail
+
         })
     }
-    getEmail(){
+    getEmail() {
         return inquirer.prompt([
             {
                 type: 'input',
@@ -42,7 +51,7 @@ class Employee {
             this.getRole
         })
     }
-    getRole(){
+    getRole() {
         return inquirer.prompt([
             {
                 type: 'input',
@@ -53,6 +62,9 @@ class Employee {
             this.role = answers.role
         })
     }
-}; 
+}
+
+const e = new Employee
+e.getName ()
 
 module.exports = Employee
