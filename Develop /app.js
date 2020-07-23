@@ -10,6 +10,91 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const empQuest = [{
+    type: "input",
+    name: "role",
+    message: "What is the employee's role?",
+}]
+
+const intQuest = [
+{
+    type: "input",
+    name: "name",
+    message: "What is the intern's name?"
+},
+{
+    type: "input",
+    name: "id",
+    message: "What is the intern's ID?"
+},
+{
+    type: "input",
+    name: "email",
+    message: "What is the intern's email?"
+},
+{
+    type: "input",
+    name: "school",
+    message: "What is the intern's school?",
+},
+{
+    type: "confirm",
+    name: "addAnother",
+    message: "Add another employee?"
+}
+]
+
+const engQuest = [
+{
+    type: "input",
+    name: "name",
+    message: "What is the engineer's name?",
+},
+{
+    type: "input",
+    name: "id",
+    message: "What is the engineer's ID?",
+},
+{
+    type: "input",
+    name: "email",
+    message: "What is the engineer's email?",
+},
+{
+    type: "input",
+    name: "github",
+    message: "What is the engineer's GitHub username?",
+},
+{
+    type: "confirm",
+    name: "addAnother",
+    message: "Add another employee?",
+},
+]
+
+const manQuest = [
+{
+    type: "input",
+    name: "name",
+    message: "What is the manager's name?",
+},
+{
+    type: "input",
+    name: "id",
+    message: "What is the manager's ID?",
+},
+{
+    type: "input",
+    name: "email",
+    message: "What is the manager's email?",
+},
+{
+    type: "input",
+    name: "officeNumber",
+    message: "What is the manager's office number?"
+},
+]
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
