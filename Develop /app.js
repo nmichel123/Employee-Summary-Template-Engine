@@ -10,20 +10,13 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const chooseChoices = ["Intern", "Engineer", "Manager"]
+const chooseChoices = ["Intern", "Engineer", "Manager"];
 
 const choose = [{
     type: "list",
     name: "empChoice",
-    // choices: [chooseChoices[0], chooseChoices[1], chooseChoices[2]],
-    choices: ["Intern", "Engineer", "Manager"],
+    choices: [chooseChoices[0], chooseChoices[1], chooseChoices[2]],
     message: "What type of employee?"
-}]
-
-const empQuest = [{
-    type: "input",
-    name: "role",
-    message: "What is the employee's role?",
 }]
 
 const intQuest = [
@@ -103,21 +96,43 @@ const manQuest = [
     name: "officeNumber",
     message: "What is the manager's office number?"
 },
+{
+    type: "confirm",
+    name: "addAnother",
+    message: "Add another employee?",
+},
 ]
 
 async function runPrompt () {
     inquirer.prompt(choose)
     .then(answer=> {
-        if (chooseChoices[0]) {
+        if (answer.empChoice === chooseChoices[0]) {
            return inquirer.prompt(intQuest) 
+           .then (answer => {
+               if (answer.addAnother === "Yes") {
+                   runPrompt() 
+                   var intern = new Intern (answer.name, answer.id, answer.email, answer.school)
+                   finalAns.push(intern);
+                   else return 
+               }
+           })
         }
-        else if (chooseChoices[1]) {
+        else if (answer.empChoice === chooseChoices[1]) {
            return inquirer.prompt(engQuest)
+           .then (answer => {
+            if (answer.addAnother === "Yes") {
+                runPrompt()
+            }
+        })
         }
-        else if (chooseChoices[2]) {
+        else if (answer.empChoice === chooseChoices[2]) {
            return inquirer.prompt(manQuest)
+           .then (answer => {
+            if (answer.addAnother === "Yes") {
+                runPrompt() 
+            }
+        })
         }
-        
     }
     )}
 
