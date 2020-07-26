@@ -148,3 +148,5 @@ runPrompt ();
 
 
 const finalAns = [];
+
+render (finalAns)
