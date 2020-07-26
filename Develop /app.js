@@ -41,8 +41,9 @@ const intQuest = [
     message: "What is the intern's school?",
 },
 {
-    type: "confirm",
+    type: "list",
     name: "addAnother",
+    choices: ["Yes", "No"],
     message: "Add another employee?"
 }
 ]
@@ -69,10 +70,11 @@ const engQuest = [
     message: "What is the engineer's GitHub username?",
 },
 {
-    type: "confirm",
+    type: "list",
     name: "addAnother",
-    message: "Add another employee?",
-},
+    choices: ["Yes", "No"],
+    message: "Add another employee?"
+}
 ]
 
 const manQuest = [
@@ -97,10 +99,11 @@ const manQuest = [
     message: "What is the manager's office number?"
 },
 {
-    type: "confirm",
+    type: "list",
     name: "addAnother",
-    message: "Add another employee?",
-},
+    choices: ["Yes", "No"],
+    message: "Add another employee?"
+}
 ]
 
 async function runPrompt () {
@@ -112,9 +115,8 @@ async function runPrompt () {
                if (answer.addAnother === "Yes") {
                    runPrompt() 
                    var intern = new Intern (answer.name, answer.id, answer.email, answer.school)
-                   finalAns.push(intern);
-                   else return 
-               }
+                   finalAns.push(intern)}
+                   else if (answer.addAnother === "No") {return}
            })
         }
         else if (answer.empChoice === chooseChoices[1]) {
@@ -122,7 +124,9 @@ async function runPrompt () {
            .then (answer => {
             if (answer.addAnother === "Yes") {
                 runPrompt()
-            }
+                var engineer = new Engineer (answer.name, answer.id, answer.email, answer.github)
+                   finalAns.push(engineer)}
+                   else if (answer.addAnother === "No") {return}
         })
         }
         else if (answer.empChoice === chooseChoices[2]) {
@@ -130,7 +134,9 @@ async function runPrompt () {
            .then (answer => {
             if (answer.addAnother === "Yes") {
                 runPrompt() 
-            }
+                var manager = new Manager (answer.name, answer.id, answer.email, answer.officeNumber)
+                   finalAns.push(manager)}
+                   else if (answer.addAnother === "No") {return}
         })
         }
     }
