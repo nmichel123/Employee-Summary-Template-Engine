@@ -12,6 +12,8 @@ const render = require("./lib/htmlRenderer");
 
 const chooseChoices = ["Intern", "Engineer", "Manager"];
 
+const finalAns = [];
+
 const choose = [{
     type: "list",
     name: "empChoice",
@@ -106,7 +108,7 @@ const manQuest = [
 }
 ]
 
-async function runPrompt () {
+async function runPrompt (data) {
     inquirer.prompt(choose)
     .then(answer=> {
         if (answer.empChoice === chooseChoices[0]) {
@@ -140,13 +142,29 @@ async function runPrompt () {
         })
         }
     }
+
+    
     )}
 
-
+    render (finalAns)
 
 runPrompt ();
 
 
-const finalAns = [];
 
-render (finalAns)
+
+
+fs.writeFile(outputPath,finalAns, function (err) {
+    
+    if (err) throw err
+   
+});
+
+
+
+fs.appendFile(outputPath,JSON.stringify(finalAns), function (err) {
+    
+    if (err) throw err
+   
+});
+
